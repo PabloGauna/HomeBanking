@@ -19,7 +19,8 @@ public class AccountDAOH2Impl extends DAOH2Impl<Account> implements AccountDAO {
 
     public String getInsertQuery(Account account) {
         int number = account.getNumber();
-        return "INSERT INTO account (number) VALUES ('" + number + "')";
+        float balance = account.getBalance();
+        return "INSERT INTO account (number, balance) VALUES ('" + number + "','" + balance + "')";
     }
 
     public String getUpdateQuery(Account account) {
@@ -28,6 +29,6 @@ public class AccountDAOH2Impl extends DAOH2Impl<Account> implements AccountDAO {
 
     public Account mapResultSetToEntity(ResultSet resultSet) throws SQLException {
         int number = resultSet.getInt("number");
-        return new Account(number);
+        return new Account(number, 0.0f);
     }
 }

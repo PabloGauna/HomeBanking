@@ -11,7 +11,7 @@ public class Main {
         IAccountService accountService = new AccountService();
 
         try {
-            accountService.createAccount(new Account(12313123));
+            accountService.createAccount(new Account(12313123, 0.0f));
         } catch (AccountServiceException e) {
             e.printStackTrace();
         }

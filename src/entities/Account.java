@@ -2,17 +2,27 @@ package entities;
 
 public class Account {
 
-    private int _number;
+    private int number;
+    private float balance;
 
-    public Account(int number) {
-        _number = number;
+    public Account(int number, float balance) {
+        this.setNumber(number);
+        this.setBalance(balance);
     }
 
     public int getNumber() {
-        return _number;
+        return number;
     }
 
     public void setNumber(int number) {
-        this._number = number;
+        this.number = number;
+    }
+
+    public float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
     }
 }
