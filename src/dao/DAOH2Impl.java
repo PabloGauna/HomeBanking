@@ -16,7 +16,7 @@ public abstract class DAOH2Impl<T> {
     public abstract String getUpdateQuery(T entity);
     public abstract T mapResultSetToEntity(ResultSet resultSet) throws SQLException;
 
-    private void executeUpdate(String query) throws DuplicatedKeyException, DAOException {
+    private void executeUpdate(String query) throws DuplicatedEntryException, DAOException {
         Connection c = DBManager.connect();
 
         try {
@@ -28,11 +28,11 @@ public abstract class DAOH2Impl<T> {
                 c.rollback();
                 e.printStackTrace();
             } catch (SQLException e1) {
-                throw new DAOException();
+                throw new DAOException(e1);
             }
 
             if (e.getErrorCode() == 23505) {
-                throw new DuplicatedKeyException();
+                throw new DuplicatedEntryException(e);
             }
         } finally {
             try {
@@ -59,7 +59,7 @@ public abstract class DAOH2Impl<T> {
             try {
                 c.rollback();
             } catch (SQLException e1) {
-                throw new DAOException();
+                throw new DAOException(e1);
             }
         } finally {
             try {
@@ -72,22 +72,22 @@ public abstract class DAOH2Impl<T> {
         return result;
     }
 
-    public void create(T entity) throws DAOException, DuplicatedKeyException {
+    public void create(T entity) throws DAOException, DuplicatedEntryException {
         String sql = getInsertQuery(entity);
         executeUpdate(sql);
     }
 
-    public void delete(int id) throws DAOException, DuplicatedKeyException {
+    public void delete(int id) throws DAOException, DuplicatedEntryException {
         String sql = getDeleteByIdQuery(id);
         executeUpdate(sql);
     }
 
-    public void update(T entity) throws DAOException, DuplicatedKeyException {
+    public void update(T entity) throws DAOException, DuplicatedEntryException {
         String sql = getUpdateQuery(entity);
         executeUpdate(sql);
     }
 
-    public List<T> getAll() throws DAOException{
+    public List<T> getAll() throws DAOException {
         List<T> result = new ArrayList<>();
 
         String sql = getSelectAllQuery();
