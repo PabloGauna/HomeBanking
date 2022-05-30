@@ -17,4 +17,37 @@ public class AccountService implements IAccountService  {
             throw new AccountServiceException(e);
         }
     }
+
+    public void updateAccount(Account account) throws AccountServiceException {
+        try {
+            accountDAO.update(account);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        } catch (DuplicatedEntryException e) {
+            e.printStackTrace();
+            throw new AccountServiceException(e);
+        }
+    }
+
+    public Account getAccountById(int id) throws AccountServiceException {
+        Account result;
+        try {
+            result = accountDAO.getById(id);
+        } catch (DAOException e) {
+            e.printStackTrace();
+            throw new AccountServiceException(e);
+        }
+        return result;
+    }
+
+    public void deleteAccount(int id) throws AccountServiceException {
+        try {
+            accountDAO.delete(id);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        } catch (DuplicatedEntryException e) {
+            e.printStackTrace();
+            throw new AccountServiceException(e);
+        }
+    }
 }
