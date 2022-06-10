@@ -22,7 +22,7 @@ public class AccountsListScreenPanel extends JPanel {
 
     private JButton deleteAccountButton;
 
-    public AccountsListScreenPanel(ScreenManager screenManager, AccountService accountService) throws AccountServiceException {
+    public AccountsListScreenPanel(ScreenManager screenManager, AccountService accountService) {
         _accountService = accountService;
         _screenManager = screenManager;
 
@@ -41,7 +41,6 @@ public class AccountsListScreenPanel extends JPanel {
         this.add(accountsNavigationButtonsPanel, BorderLayout.PAGE_END);
 
         addActionListeners();
-        loadAccountsTable();
     }
 
     private void addActionListeners(){

@@ -27,13 +27,9 @@ public class ScreenManager {
     }
 
     public ScreenManager() {
-        try {
-            accountsListScreenPanel = new AccountsListScreenPanel(this, accountService);
-            createAccountScreenPanel = new CreateAccountScreenPanel(this, accountService);
-            editAccountScreenPanel = new EditAccountScreenPanel(this, accountService);
-        } catch (AccountServiceException e) {
-            throw new RuntimeException(e);
-        }
+        accountsListScreenPanel = new AccountsListScreenPanel(this, accountService);
+        createAccountScreenPanel = new CreateAccountScreenPanel(this, accountService);
+        editAccountScreenPanel = new EditAccountScreenPanel(this, accountService);
     }
 
     public void createMainScreen() {
