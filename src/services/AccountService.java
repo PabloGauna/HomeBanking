@@ -6,6 +6,8 @@ import dao.DAOException;
 import dao.DuplicatedEntryException;
 import entities.Account;
 
+import java.util.List;
+
 public class AccountService implements IAccountService  {
     private final AccountDAO accountDAO = new AccountDAOH2Impl();
 
@@ -35,6 +37,16 @@ public class AccountService implements IAccountService  {
             result = accountDAO.getById(id);
         } catch (DAOException e) {
             e.printStackTrace();
+            throw new AccountServiceException(e);
+        }
+        return result;
+    }
+
+    public List<Account> getAllAccounts() throws AccountServiceException {
+        List<Account> result;
+        try {
+            result = accountDAO.getAll();
+        } catch (DAOException e) {
             throw new AccountServiceException(e);
         }
         return result;

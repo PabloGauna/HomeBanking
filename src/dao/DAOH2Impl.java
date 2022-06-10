@@ -88,10 +88,8 @@ public abstract class DAOH2Impl<T> {
     }
 
     public List<T> getAll() throws DAOException {
-        List<T> result = new ArrayList<>();
-
         String sql = getSelectAllQuery();
-        executeQuery(sql);
+        List<T> result = executeQuery(sql);
 
         return result;
     }
