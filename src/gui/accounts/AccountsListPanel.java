@@ -1,12 +1,12 @@
-package gui;
+package gui.accounts;
 
 import entities.Account;
+import gui.ScreenManager;
 import services.AccountService;
 import services.AccountServiceException;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AccountsListPanel extends JPanel {
@@ -16,7 +16,7 @@ public class AccountsListPanel extends JPanel {
 
     private AccountService service = new AccountService();
 
-    public AccountsListPanel() throws AccountServiceException {
+    public AccountsListPanel(ScreenManager screenManager) throws AccountServiceException {
         this.setLayout(new FlowLayout());
 
         model = new AccountsTableModel();

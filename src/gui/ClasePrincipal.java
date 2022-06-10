@@ -1,21 +1,26 @@
 package gui;
 
+import gui.accounts.AccountsListPanel;
 import services.AccountServiceException;
 
 import javax.swing.*;
 
 public class ClasePrincipal {
+    private static ScreenManager screenManager;
+
     public static void main(String[] args) {
-        JFrame j = new JFrame("Cuentas");
+        ClasePrincipal ppal = new ClasePrincipal();
+        ppal.startManager();
+        ppal.showFrame();
+    }
 
-        try {
-            j.getContentPane().add(new AccountsListPanel());
-        } catch (AccountServiceException e) {
-            throw new RuntimeException(e);
-        }
+    public void startManager() {
+        screenManager = new ScreenManager();
+        screenManager.createMainScreen();
+        screenManager.showAccountsListPanel();
+    }
 
-        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.pack();
-        j.setVisible(true);
+    public void showFrame() {
+        screenManager.showFrame();
     }
 }
