@@ -35,15 +35,16 @@ public class AccountsListScreenPanel extends JPanel {
         deleteAccountButton = new JButton("Borrar Cuenta");
         accountsNavigationButtonsPanel = new AccountsNavigationButtonsPanel(screenManager);
 
+        this.add(new JLabel("Cuentas Bancarias"), BorderLayout.NORTH);
         this.add(tableScrollPanel, BorderLayout.CENTER);
         this.add(deleteAccountButton, BorderLayout.CENTER);
         this.add(accountsNavigationButtonsPanel, BorderLayout.PAGE_END);
 
-        AddActionListeners();
+        addActionListeners();
         loadAccountsTable();
     }
 
-    private void AddActionListeners(){
+    private void addActionListeners(){
         deleteAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Account deletedAccount = deleteAccountsTableSelectedRow();

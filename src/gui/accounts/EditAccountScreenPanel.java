@@ -12,14 +12,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 
-public class CreateAccountScreenPanel extends AccountFormPanel {
+public class EditAccountScreenPanel extends AccountFormPanel {
 
     private AccountsNavigationButtonsPanel accountsNavigationButtonsPanel;
-    private JButton addAccountButton;
+    private JButton editAccountButton;
     private ScreenManager _screenManager;
     private AccountService _accountService;
 
-    public CreateAccountScreenPanel(ScreenManager screenManager, AccountService accountService){
+    public EditAccountScreenPanel(ScreenManager screenManager, AccountService accountService){
         _screenManager = screenManager;
         _accountService = accountService;
 
@@ -32,21 +32,21 @@ public class CreateAccountScreenPanel extends AccountFormPanel {
     }
 
     private void createAddAccountForm(){
-        JLabel titleLbl = new JLabel("Nueva Cuenta");
+        JLabel titleLbl = new JLabel("Editar Cuenta");
         titleLbl.setPreferredSize(new Dimension(500,40));
         this.add(titleLbl);
 
         this.createAccountForm();
 
-        addAccountButton = new JButton("Crear Cuenta");
-        this.add(addAccountButton, BorderLayout.CENTER);
+        editAccountButton = new JButton("Editar Cuenta");
+        this.add(editAccountButton, BorderLayout.CENTER);
     }
 
     private void addActionListeners(){
-        this.addAccountButton.addActionListener(new ActionListener() {
+        this.editAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    _accountService.createAccount(new Account(
+                    _accountService.updateAccount(new Account(
                         Integer.parseInt(getNumberTxt().getText()),
                         new BigDecimal(getBalanceTxt().getText()),
                         getUserTxt().getText(),
