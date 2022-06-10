@@ -1,18 +1,22 @@
 package gui;
 
-import gui.accounts.AccountsListPanel;
+import gui.accounts.AccountsListScreenPanel;
+import gui.accounts.CreateAccountScreenPanel;
 import services.AccountServiceException;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ScreenManager {
 
     private JFrame frame;
-    private AccountsListPanel accountsListPanel;
+    private AccountsListScreenPanel accountsListScreenPanel;
+    private CreateAccountScreenPanel createAccountScreenPanel;
 
     public ScreenManager() {
         try {
-            accountsListPanel = new AccountsListPanel(this);
+            accountsListScreenPanel = new AccountsListScreenPanel(this);
+            createAccountScreenPanel = new CreateAccountScreenPanel(this);
         } catch (AccountServiceException e) {
             throw new RuntimeException(e);
         }
@@ -21,6 +25,7 @@ public class ScreenManager {
     public void createMainScreen() {
         frame = new JFrame();
         frame.setBounds(100, 100, 500, 500);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -28,9 +33,16 @@ public class ScreenManager {
         frame.setVisible(true);
     }
 
-    public void showAccountsListPanel() {
+    public void showAccountsListScreenPanel() {
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(accountsListPanel);
+        frame.getContentPane().add(accountsListScreenPanel);
+        frame.getContentPane().validate();//RE-dispongo los elementos segun el layout
+        frame.getContentPane().repaint();//RE-pinto los elementos dispuestos en el paso anterior
+    }
+
+    public void showCreateAccountScreenPanel() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(createAccountScreenPanel);
         frame.getContentPane().validate();//RE-dispongo los elementos segun el layout
         frame.getContentPane().repaint();//RE-pinto los elementos dispuestos en el paso anterior
     }

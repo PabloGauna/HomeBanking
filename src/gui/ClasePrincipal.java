@@ -1,10 +1,5 @@
 package gui;
 
-import gui.accounts.AccountsListPanel;
-import services.AccountServiceException;
-
-import javax.swing.*;
-
 public class ClasePrincipal {
     private static ScreenManager screenManager;
 
@@ -17,7 +12,7 @@ public class ClasePrincipal {
     public void startManager() {
         screenManager = new ScreenManager();
         screenManager.createMainScreen();
-        screenManager.showAccountsListPanel();
+        screenManager.showAccountsListScreenPanel();
     }
 
     public void showFrame() {

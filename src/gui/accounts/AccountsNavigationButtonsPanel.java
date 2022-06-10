@@ -1,0 +1,72 @@
+package gui.accounts;
+
+import gui.ScreenManager;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class AccountsNavigationButtonsPanel extends JPanel {
+
+    private ScreenManager screenManager;
+    private JButton accountsListBtn;
+    private JButton newAccountBtn;
+    private JButton deleteAccountBtn;
+    private JButton editAccountBtn;
+
+    public AccountsNavigationButtonsPanel(ScreenManager screenManager) {
+        this.screenManager = screenManager;
+        createButtons();
+    }
+
+    public void createButtons() {
+        accountsListBtn = new JButton("Ver Cuentas");
+        newAccountBtn = new JButton("Nueva Cuenta");
+        deleteAccountBtn = new JButton("Borrar Cuenta");
+        editAccountBtn = new JButton("Editar Cuenta");
+
+        this.add(accountsListBtn);
+        this.add(newAccountBtn);
+        this.add(deleteAccountBtn);
+        this.add(editAccountBtn);
+
+        this.accountsListBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                screenManager.showAccountsListScreenPanel();
+            }
+        });
+
+        this.newAccountBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                screenManager.showCreateAccountScreenPanel();
+            }
+        });
+
+    }
+
+    public JButton getNewAccountBtn() {
+        return newAccountBtn;
+    }
+
+    public void setNewAccountBtn(JButton newAccountBtn) {
+        this.newAccountBtn = newAccountBtn;
+    }
+
+    public JButton getDeleteAccountBtn() {
+        return deleteAccountBtn;
+    }
+
+    public void setDeleteAccountBtn(JButton deleteAccountBtn) {
+        this.deleteAccountBtn = deleteAccountBtn;
+    }
+
+    public JButton getEditAccountBtn() {
+        return editAccountBtn;
+    }
+
+    public void setEditAccountBtn(JButton editAccountBtn) {
+        this.editAccountBtn = editAccountBtn;
+    }
+}
+
+
