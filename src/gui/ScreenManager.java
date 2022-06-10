@@ -1,5 +1,7 @@
 package gui;
 
+import entities.Account;
+import entities.AccountType;
 import gui.accounts.AccountsListScreenPanel;
 import gui.accounts.CreateAccountScreenPanel;
 import gui.accounts.EditAccountScreenPanel;
@@ -17,6 +19,14 @@ public class ScreenManager {
     private EditAccountScreenPanel editAccountScreenPanel;
 
     private AccountService accountService = new AccountService();
+
+    public AccountsListScreenPanel getAccountsListScreenPanel() {
+        return accountsListScreenPanel;
+    }
+
+    public void setAccountsListScreenPanel(AccountsListScreenPanel accountsListScreenPanel) {
+        this.accountsListScreenPanel = accountsListScreenPanel;
+    }
 
     public ScreenManager() {
         try {
@@ -53,13 +63,23 @@ public class ScreenManager {
     }
 
     public void showCreateAccountScreenPanel() {
+        createAccountScreenPanel.getNumberTxt().setText("");
+        createAccountScreenPanel.getBalanceTxt().setText("");
+        createAccountScreenPanel.getUserTxt().setText("");
+        createAccountScreenPanel.getTypeTxt().setText("");
+
         frame.getContentPane().removeAll();
         frame.getContentPane().add(createAccountScreenPanel);
         frame.getContentPane().validate();//RE-dispongo los elementos segun el layout
         frame.getContentPane().repaint();//RE-pinto los elementos dispuestos en el paso anterior
     }
 
-    public void showEditAccountScreenPanel() {
+    public void showEditAccountScreenPanel(Account account) {
+        editAccountScreenPanel.getNumberTxt().setText(String.valueOf(account.getNumber()));
+        editAccountScreenPanel.getBalanceTxt().setText(String.valueOf(account.getBalance()));
+        editAccountScreenPanel.getUserTxt().setText(String.valueOf(account.getUser()));
+        editAccountScreenPanel.getTypeTxt().setText(String.valueOf(account.getType()));
+
         frame.getContentPane().removeAll();
         frame.getContentPane().add(editAccountScreenPanel);
         frame.getContentPane().validate();//RE-dispongo los elementos segun el layout

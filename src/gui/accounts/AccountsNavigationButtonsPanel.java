@@ -41,7 +41,9 @@ public class AccountsNavigationButtonsPanel extends JPanel {
 
         this.editAccountBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                screenManager.showEditAccountScreenPanel();
+                screenManager.showEditAccountScreenPanel(
+                        screenManager.getAccountsListScreenPanel().getAccountsTableSelectedAccount()
+                );
             }
         });
     }
