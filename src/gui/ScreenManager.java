@@ -1,7 +1,6 @@
 package gui;
 
 import entities.Account;
-import entities.AccountType;
 import gui.accounts.AccountsListScreenPanel;
 import gui.accounts.CreateAccountScreenPanel;
 import gui.accounts.EditAccountScreenPanel;
@@ -9,7 +8,6 @@ import services.AccountService;
 import services.AccountServiceException;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ScreenManager {
 
