@@ -1,12 +1,11 @@
 package gui;
 
-public class ClasePrincipal {
+public class AppGui {
     private static ScreenManager screenManager;
 
-    public static void main(String[] args) {
-        ClasePrincipal ppal = new ClasePrincipal();
-        ppal.startManager();
-        ppal.showFrame();
+    public AppGui() {
+        this.startManager();
+        this.showFrame();
     }
 
     public void startManager() {
