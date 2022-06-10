@@ -11,7 +11,6 @@ public class AccountsNavigationButtonsPanel extends JPanel {
     private ScreenManager screenManager;
     private JButton accountsListBtn;
     private JButton newAccountBtn;
-    private JButton deleteAccountBtn;
     private JButton editAccountBtn;
 
     public AccountsNavigationButtonsPanel(ScreenManager screenManager) {
@@ -22,12 +21,10 @@ public class AccountsNavigationButtonsPanel extends JPanel {
     public void createButtons() {
         accountsListBtn = new JButton("Ver Cuentas");
         newAccountBtn = new JButton("Nueva Cuenta");
-        deleteAccountBtn = new JButton("Borrar Cuenta");
         editAccountBtn = new JButton("Editar Cuenta");
 
         this.add(accountsListBtn);
         this.add(newAccountBtn);
-        this.add(deleteAccountBtn);
         this.add(editAccountBtn);
 
         this.accountsListBtn.addActionListener(new ActionListener() {
@@ -50,14 +47,6 @@ public class AccountsNavigationButtonsPanel extends JPanel {
 
     public void setNewAccountBtn(JButton newAccountBtn) {
         this.newAccountBtn = newAccountBtn;
-    }
-
-    public JButton getDeleteAccountBtn() {
-        return deleteAccountBtn;
-    }
-
-    public void setDeleteAccountBtn(JButton deleteAccountBtn) {
-        this.deleteAccountBtn = deleteAccountBtn;
     }
 
     public JButton getEditAccountBtn() {

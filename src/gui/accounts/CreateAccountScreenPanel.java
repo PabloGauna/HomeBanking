@@ -22,12 +22,12 @@ public class CreateAccountScreenPanel extends JPanel {
 
     private JButton addAccountButton;
 
-    private ScreenManager screenManager;
-    private AccountService accountService;
+    private ScreenManager _screenManager;
+    private AccountService _accountService;
 
-    public CreateAccountScreenPanel(ScreenManager sm, AccountService as){
-        screenManager = sm;
-        accountService = as;
+    public CreateAccountScreenPanel(ScreenManager screenManager, AccountService accountService){
+        _screenManager = screenManager;
+        _accountService = accountService;
 
         accountsNavigationButtonsPanel = new AccountsNavigationButtonsPanel(screenManager);
 
@@ -74,14 +74,14 @@ public class CreateAccountScreenPanel extends JPanel {
         this.addAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    accountService.createAccount(new Account(
+                    _accountService.createAccount(new Account(
                         Integer.parseInt(numberTxt.getText()),
                         new BigDecimal(balanceTxt.getText()),
                         userTxt.getText(),
                         AccountType.valueOf(typeTxt.getText())
                     ));
 
-                    screenManager.showAccountsListScreenPanel();
+                    _screenManager.showAccountsListScreenPanel();
                 } catch (AccountServiceException ex) {
                     throw new RuntimeException(ex);
                 }

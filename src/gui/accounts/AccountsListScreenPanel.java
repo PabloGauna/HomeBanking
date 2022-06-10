@@ -7,36 +7,68 @@ import services.AccountServiceException;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class AccountsListScreenPanel extends JPanel {
+    private AccountService _accountService;
+    private ScreenManager _screenManager;
 
     private AccountsNavigationButtonsPanel accountsNavigationButtonsPanel;
     private AccountsTableModel model;
     private JTable accountsTable;
     private JScrollPane tableScrollPanel;
 
-    private AccountService accountService;
+    private JButton deleteAccountButton;
 
-    public AccountsListScreenPanel(ScreenManager screenManager, AccountService as) throws AccountServiceException {
-        accountService = as;
+    public AccountsListScreenPanel(ScreenManager screenManager, AccountService accountService) throws AccountServiceException {
+        _accountService = accountService;
+        _screenManager = screenManager;
 
         this.setLayout(new FlowLayout());
-        accountsNavigationButtonsPanel = new AccountsNavigationButtonsPanel(screenManager);
 
         model = new AccountsTableModel();
         accountsTable = new JTable(model);
         tableScrollPanel = new JScrollPane(accountsTable);
 
-        this.add(tableScrollPanel);
+        deleteAccountButton = new JButton("Borrar Cuenta");
+        accountsNavigationButtonsPanel = new AccountsNavigationButtonsPanel(screenManager);
+
+        this.add(tableScrollPanel, BorderLayout.CENTER);
+        this.add(deleteAccountButton, BorderLayout.CENTER);
         this.add(accountsNavigationButtonsPanel, BorderLayout.PAGE_END);
 
+        AddActionListeners();
         loadAccountsTable();
     }
 
+    private void AddActionListeners(){
+        deleteAccountButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Account deletedAccount = deleteAccountsTableSelectedRow();
+
+                try {
+                    _accountService.deleteAccount(deletedAccount.getNumber());
+                } catch (AccountServiceException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+    }
+
     public void loadAccountsTable() throws AccountServiceException {
-        List<Account> accountList = accountService.getAllAccounts();
+        List<Account> accountList = _accountService.getAllAccounts();
 
         model.setContent(accountList);
+    }
+
+    private Account deleteAccountsTableSelectedRow() {
+        int selectedRow = accountsTable.getSelectedRow();
+        Account deletedAccount = model.getContent().get(selectedRow);
+        model.getContent().remove(selectedRow);
+        model.fireTableDataChanged();
+
+        return deletedAccount;
     }
 }

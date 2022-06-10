@@ -27,7 +27,7 @@ public class ScreenManager {
 
     public void createMainScreen() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 500, 500);
+        frame.setBounds(100, 100, 500, 550);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
