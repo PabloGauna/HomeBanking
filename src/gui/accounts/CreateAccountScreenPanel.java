@@ -1,8 +1,16 @@
 package gui.accounts;
 
+import entities.Account;
+import entities.AccountType;
 import gui.ScreenManager;
+import services.AccountService;
+import services.AccountServiceException;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 public class CreateAccountScreenPanel extends JPanel {
 
@@ -14,10 +22,17 @@ public class CreateAccountScreenPanel extends JPanel {
 
     private JButton addAccountButton;
 
-    public CreateAccountScreenPanel(ScreenManager screenManager){
+    private ScreenManager screenManager;
+    private AccountService accountService;
+
+    public CreateAccountScreenPanel(ScreenManager sm, AccountService as){
+        screenManager = sm;
+        accountService = as;
+
         accountsNavigationButtonsPanel = new AccountsNavigationButtonsPanel(screenManager);
 
         this.CreateAddAccountForm();
+        this.AddActionListeners();
 
         this.add(accountsNavigationButtonsPanel, BorderLayout.PAGE_END);
     }
@@ -53,5 +68,24 @@ public class CreateAccountScreenPanel extends JPanel {
         this.add(typeTxt, BorderLayout.CENTER);
 
         this.add(addAccountButton, BorderLayout.CENTER);
+    }
+
+    private void AddActionListeners(){
+        this.addAccountButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    accountService.createAccount(new Account(
+                        Integer.parseInt(numberTxt.getText()),
+                        new BigDecimal(balanceTxt.getText()),
+                        userTxt.getText(),
+                        AccountType.valueOf(typeTxt.getText())
+                    ));
+
+                    screenManager.showAccountsListScreenPanel();
+                } catch (AccountServiceException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 }

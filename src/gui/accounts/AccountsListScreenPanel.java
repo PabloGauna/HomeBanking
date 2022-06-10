@@ -16,9 +16,11 @@ public class AccountsListScreenPanel extends JPanel {
     private JTable accountsTable;
     private JScrollPane tableScrollPanel;
 
-    private AccountService service = new AccountService();
+    private AccountService accountService;
 
-    public AccountsListScreenPanel(ScreenManager screenManager) throws AccountServiceException {
+    public AccountsListScreenPanel(ScreenManager screenManager, AccountService as) throws AccountServiceException {
+        accountService = as;
+
         this.setLayout(new FlowLayout());
         accountsNavigationButtonsPanel = new AccountsNavigationButtonsPanel(screenManager);
 
@@ -32,8 +34,8 @@ public class AccountsListScreenPanel extends JPanel {
         loadAccountsTable();
     }
 
-    private void loadAccountsTable() throws AccountServiceException {
-        List<Account> accountList = service.getAllAccounts();
+    public void loadAccountsTable() throws AccountServiceException {
+        List<Account> accountList = accountService.getAllAccounts();
 
         model.setContent(accountList);
     }

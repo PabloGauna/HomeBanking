@@ -2,6 +2,7 @@ package gui;
 
 import gui.accounts.AccountsListScreenPanel;
 import gui.accounts.CreateAccountScreenPanel;
+import services.AccountService;
 import services.AccountServiceException;
 
 import javax.swing.*;
@@ -13,10 +14,12 @@ public class ScreenManager {
     private AccountsListScreenPanel accountsListScreenPanel;
     private CreateAccountScreenPanel createAccountScreenPanel;
 
+    private AccountService accountService = new AccountService();
+
     public ScreenManager() {
         try {
-            accountsListScreenPanel = new AccountsListScreenPanel(this);
-            createAccountScreenPanel = new CreateAccountScreenPanel(this);
+            accountsListScreenPanel = new AccountsListScreenPanel(this, accountService);
+            createAccountScreenPanel = new CreateAccountScreenPanel(this, accountService);
         } catch (AccountServiceException e) {
             throw new RuntimeException(e);
         }
@@ -34,6 +37,12 @@ public class ScreenManager {
     }
 
     public void showAccountsListScreenPanel() {
+        try {
+            accountsListScreenPanel.loadAccountsTable();
+        } catch (AccountServiceException e) {
+            throw new RuntimeException(e);
+        }
+
         frame.getContentPane().removeAll();
         frame.getContentPane().add(accountsListScreenPanel);
         frame.getContentPane().validate();//RE-dispongo los elementos segun el layout
