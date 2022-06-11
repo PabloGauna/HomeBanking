@@ -1,11 +1,11 @@
 package gui;
 
 import entities.Account;
+import services.AccountService;
+import services.AccountServiceException;
 import gui.accounts.AccountsListScreenPanel;
 import gui.accounts.CreateAccountScreenPanel;
 import gui.accounts.EditAccountScreenPanel;
-import services.AccountService;
-import services.AccountServiceException;
 
 import javax.swing.*;
 
@@ -68,7 +68,9 @@ public class ScreenManager {
         frame.getContentPane().repaint();//RE-pinto los elementos dispuestos en el paso anterior
     }
 
-    public void showEditAccountScreenPanel(Account account) {
+    public void showEditAccountScreenPanel() {
+        Account account = getAccountsListScreenPanel().getSelectedAccount();
+
         editAccountScreenPanel.getNumberTxt().setText(String.valueOf(account.getNumber()));
         editAccountScreenPanel.getBalanceTxt().setText(String.valueOf(account.getBalance()));
         editAccountScreenPanel.getUserTxt().setText(String.valueOf(account.getUser()));
