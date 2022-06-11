@@ -72,7 +72,7 @@ public class AccountsListScreenPanel extends JPanel {
         return deletedAccount;
     }
 
-    public Account getAccountsTableSelectedAccount(){
+    public Account getSelectedAccount(){
         int selectedRow = accountsTable.getSelectedRow();
         return model.getContent().get(selectedRow);
     }
