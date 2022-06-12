@@ -18,14 +18,6 @@ public class ScreenManager {
 
     private AccountService accountService = new AccountService();
 
-    public AccountsListScreenPanel getAccountsListScreenPanel() {
-        return accountsListScreenPanel;
-    }
-
-    public void setAccountsListScreenPanel(AccountsListScreenPanel accountsListScreenPanel) {
-        this.accountsListScreenPanel = accountsListScreenPanel;
-    }
-
     public ScreenManager() {
         accountsListScreenPanel = new AccountsListScreenPanel(this, accountService);
         createAccountScreenPanel = new CreateAccountScreenPanel(this, accountService);
@@ -69,7 +61,7 @@ public class ScreenManager {
     }
 
     public void showEditAccountScreenPanel() {
-        Account account = getAccountsListScreenPanel().getSelectedAccount();
+        Account account = accountsListScreenPanel.getSelectedAccount();
 
         editAccountScreenPanel.getNumberTxt().setText(String.valueOf(account.getNumber()));
         editAccountScreenPanel.getBalanceTxt().setText(String.valueOf(account.getBalance()));
