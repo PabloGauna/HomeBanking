@@ -1,5 +1,7 @@
-package dao;
+package dao.account;
 
+import dao.DAOException;
+import dao.DuplicatedEntryException;
 import entities.Account;
 import java.util.List;
 

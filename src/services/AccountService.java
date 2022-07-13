@@ -1,7 +1,7 @@
 package services;
 
-import dao.AccountDAO;
-import dao.AccountDAOH2Impl;
+import dao.account.AccountDAO;
+import dao.account.AccountDAOH2Impl;
 import dao.DAOException;
 import dao.DuplicatedEntryException;
 import entities.Account;

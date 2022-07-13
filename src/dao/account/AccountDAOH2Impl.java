@@ -1,7 +1,8 @@
-package dao;
+package dao.account;
 
+import dao.DAOH2Impl;
 import entities.Account;
-import entities.AccountType;
+import entities.types.AccountType;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;

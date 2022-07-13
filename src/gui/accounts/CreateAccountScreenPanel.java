@@ -1,7 +1,7 @@
 package gui.accounts;
 
 import entities.Account;
-import entities.AccountType;
+import entities.types.AccountType;
 import gui.ScreenManager;
 import services.AccountService;
 import services.AccountServiceException;

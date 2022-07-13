@@ -1,5 +1,7 @@
 package entities;
 
+import entities.types.CreditCardType;
+
 import java.math.BigDecimal;
 
 public class CreditCard {

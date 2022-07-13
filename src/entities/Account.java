@@ -1,5 +1,7 @@
 package entities;
 
+import entities.types.AccountType;
+
 import java.math.BigDecimal;
 
 public class Account {

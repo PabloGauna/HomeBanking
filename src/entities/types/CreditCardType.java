@@ -1,4 +1,4 @@
-package entities;
+package entities.types;
 
 public enum CreditCardType {
     VISA,
